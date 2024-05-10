@@ -52,3 +52,8 @@
 
 도커 컨테이너를 객체라고 생각할 수 있다. 생성된 컨테이너는 인프라 환경에 맞게 변형함으로서 다형성이 가능하다.
 ![](https://i.imgur.com/TaiOp81.jpeg)
+
+## 도커 실행 결과
+![](https://i.imgur.com/bUk3lFM.png)
+
+![](https://i.imgur.com/JRY74Px.png)
