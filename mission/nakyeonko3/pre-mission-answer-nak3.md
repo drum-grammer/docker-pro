@@ -1,4 +1,3 @@
-b
 ## 1. 컨테이너 기술이란 무엇입니까?
 
 [What is a Container? | Docker](https://www.docker.com/resources/what-container/)
