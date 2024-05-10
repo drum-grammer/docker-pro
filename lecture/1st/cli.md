@@ -203,6 +203,49 @@ docker push drumgrammer/my-httpd:latest
  docker system prune
 ```
 
+### 16. [Manage networks](https://docs.docker.com/reference/cli/docker/network/)
+- 사용법
+```shell
+ docker network COMMAND
+```
+
+#### 16-1. [Create a network](https://docs.docker.com/reference/cli/docker/network/create/)
+- 사용법
+```shell
+ docker network create [OPTIONS] NETWORK
+```
+- 예제
+```shell
+ docker network create my-network
+```
+#### 16-2. [Display detailed information on one or more networks](https://docs.docker.com/reference/cli/docker/network/inspect/)
+- 사용법
+```shell
+ docker network inspect [OPTIONS] NETWORK [NETWORK...]
+```
+- 예제
+```shell
+ docker network inspect my-network
+```
+#### 16-3. [List networks](https://docs.docker.com/reference/cli/docker/network/ls/)
+- 사용법
+```shell
+docker network ls [OPTIONS]
+```
+- 예제
+```shell
+ docker network ls
+```
+#### 16-4. [Remove all unused networks](https://docs.docker.com/reference/cli/docker/network/prune/)
+- 사용법
+```shell
+ docker network prune [OPTIONS]
+```
+- 예제
+```shell
+ docker network prune
+```
+
 ## Dockerfile 활용
 1. Dockerfile 예제
 ```Dockerfile
