@@ -70,4 +70,5 @@ docker run hello-world
 
 ## IV. 도커 커맨드 라인 명령어 정리
 - [공식 문서](https://docs.docker.com/engine/reference/run/)
-- [cheat sheet](/lecture/1st/cli.md)
+- [cheat sheet - Docker CLI](/lecture/1st/cli.md)
+- [cheat sheet - Docker Compose CLI](/lecture/2nd/docker-compose-cli.md)
