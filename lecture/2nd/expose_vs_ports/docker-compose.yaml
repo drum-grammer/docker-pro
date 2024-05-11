@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8000:5000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    expose:
+      - "5432"
