@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 40px;
+            padding: 20px;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        ul li.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 5px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .delete-btn {
+            display: none;
+            margin-left: auto;
+            color: red;
+            cursor: pointer;
+        }
+        li:hover .delete-btn {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul id="todo-list">
+        {% for todo in todos %}
+        <li>
+            <input type="checkbox" class="toggle-completed" data-id="{{ todo }}">
+            {{ todo }}
+            <span class="delete-btn" onclick="deleteTodo('{{ todo }}')">X</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <input type="text" id="todo-input" placeholder="Add new todo">
+    <button onclick="addTodo()">Add</button>
+
+    <script>
+        function addTodo() {
+            const todoInput = document.getElementById('todo-input');
+            const todo = todoInput.value.trim();
+            if (!todo) {
+                alert('Please enter a todo.');
+                return;
+            }
+            fetch('/todos', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({todo: todo})
+            }).then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const list = document.getElementById('todo-list');
+                    const item = document.createElement('li');
+                    item.innerHTML = `<input type="checkbox" class="toggle-completed"> ${todo} <span class="delete-btn" onclick="deleteTodo('${encodeURIComponent(todo)}')">X</span>`;
+                    list.appendChild(item);
+                    todoInput.value = '';
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+    
+        function deleteTodo(encodedTodo) {
+            const todo = decodeURIComponent(encodedTodo);
+            console.log("Deleting:", todo);
+            fetch('/delete_todo', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({todo: todo})
+            }).then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+    </script>    
+</body>
+</html>
