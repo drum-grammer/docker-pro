@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ollama-container:
+    image: ollama/ollama
+    volumes:
+      - ./llm:/root/.ollama
+    ports:
+      - 11434:11434
+    # command: ["ollama", "run", "phi"]
+
+  streamlit-app:
+    image: docker-chatbot:0.1
+    ports:
+      - 8501:8501
