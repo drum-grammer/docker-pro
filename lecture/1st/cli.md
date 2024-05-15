@@ -1,4 +1,6 @@
-## cli example
+# cli example
+
+## Part I : BASIC Image, Container CRUD
 
 ### 1. [Download an image from a registry](https://docs.docker.com/engine/reference/commandline/pull/)
 - 사용법
@@ -20,7 +22,17 @@ docker pull httpd
  docker images
 ```
 
-### 3. [Create and run a new container from an image](https://docs.docker.com/engine/reference/commandline/run/)
+### 3. [Remove one or more images](https://docs.docker.com/engine/reference/commandline/rmi/)
+- 사용법
+```shell
+ docker rmi [OPTIONS] IMAGE [IMAGE...]
+```
+- 예제
+```shell
+docker rmi 6026ab9b44cc
+```
+
+### 4. [Create and run a new container from an image](https://docs.docker.com/engine/reference/commandline/run/)
 - 사용법
 ```shell
  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -32,7 +44,7 @@ docker pull httpd
  docker run -p 8888:80 -v /Users/jk/wanted/docker-pro/lecture/1st:/usr/local/apache2/htdocs httpd
 ```
 
-### 4. [Start one or more stopped containers](https://docs.docker.com/engine/reference/commandline/start/)
+### 5. [Start one or more stopped containers](https://docs.docker.com/engine/reference/commandline/start/)
 - 사용법
 ```shell
  docker start [OPTIONS] CONTAINER [CONTAINER...]
@@ -42,7 +54,7 @@ docker pull httpd
  docker start c8274d6a6273
 ```
 
-### 5. [Stop one or more running containers](https://docs.docker.com/engine/reference/commandline/stop/)
+### 6. [Stop one or more running containers](https://docs.docker.com/engine/reference/commandline/stop/)
 - 사용법
 ```shell
  docker stop [OPTIONS] CONTAINER [CONTAINER...]
@@ -53,7 +65,7 @@ docker pull httpd
  docker stop -a
 ```
 
-### 6. [Fetch the logs of a container](https://docs.docker.com/engine/reference/commandline/logs/)
+### 7. [Fetch the logs of a container](https://docs.docker.com/engine/reference/commandline/logs/)
 - 사용법
 ```shell
  docker logs [OPTIONS] CONTAINER
@@ -64,7 +76,7 @@ docker logs second
 docker logs second -f
 ```
 
-### 7. [Remove one or more containers](https://docs.docker.com/engine/reference/commandline/rm/)
+### 8. [Remove one or more containers](https://docs.docker.com/engine/reference/commandline/rm/)
 - 사용법
 ```shell
  docker rm [OPTIONS] CONTAINER [CONTAINER...]
@@ -73,16 +85,6 @@ docker logs second -f
 ```shell
 docker rm 6026ab9b44cc
 docker rm second -f
-```
-
-### 8. [Remove one or more images](https://docs.docker.com/engine/reference/commandline/rmi/)
-- 사용법
-```shell
- docker rmi [OPTIONS] IMAGE [IMAGE...]
-```
-- 예제
-```shell
-docker rmi 6026ab9b44cc
 ```
 
 ### 9. [Execute a command in a running container](https://docs.docker.com/engine/reference/commandline/exec/)
@@ -121,13 +123,16 @@ docker exec -it awesome_elion /bin/sh
  docker container stats
 ```
 
-### 11. [Manage images](https://docs.docker.com/engine/reference/commandline/image/)
+
+## Part II : Image Management
+
+### 1. [Manage images](https://docs.docker.com/engine/reference/commandline/image/)
 - 사용법
 ```shell
  docker image COMMAND
 ```
 
-#### 11-1. [Remove unused images](https://docs.docker.com/engine/reference/commandline/image_prune/)
+#### 1-1. [Remove unused images](https://docs.docker.com/engine/reference/commandline/image_prune/)
 - 사용법
 ```shell
  docker image prune [OPTIONS]
@@ -137,7 +142,7 @@ docker exec -it awesome_elion /bin/sh
  docker image prune
 ```
 
-#### 11-2. [Display detailed information on one or more images](https://docs.docker.com/engine/reference/commandline/image_inspect/)
+#### 1-2. [Display detailed information on one or more images](https://docs.docker.com/engine/reference/commandline/image_inspect/)
 - 사용법
 ```shell
  docker image inspect [OPTIONS]
@@ -147,7 +152,7 @@ docker exec -it awesome_elion /bin/sh
 docker image inspect httpd
 ```
 
-#### 11-3. [Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE](https://docs.docker.com/engine/reference/commandline/image_tag/)
+#### 1-3. [Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE](https://docs.docker.com/engine/reference/commandline/image_tag/)
 - 사용법
 ```shell
  docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
@@ -157,7 +162,7 @@ docker image inspect httpd
 docker image tag my-httpd drumgrammer/my-httpd:latest
 ```
 
-### 12. [Upload an image to a registry](https://docs.docker.com/engine/reference/commandline/push/)
+### 2. [Upload an image to a registry](https://docs.docker.com/engine/reference/commandline/push/)
 - 사용법
 ```shell
  docker push [OPTIONS] NAME[:TAG]
@@ -167,7 +172,55 @@ docker image tag my-httpd drumgrammer/my-httpd:latest
 docker push drumgrammer/my-httpd:latest
 ```
 
-### 13. [Log in to a registry](https://docs.docker.com/engine/reference/commandline/login/)
+
+## Part III : Network Management
+
+### 1. [Manage networks](https://docs.docker.com/reference/cli/docker/network/)
+- 사용법
+```shell
+ docker network COMMAND
+```
+
+#### 1-1. [Create a network](https://docs.docker.com/reference/cli/docker/network/create/)
+- 사용법
+```shell
+ docker network create [OPTIONS] NETWORK
+```
+- 예제
+```shell
+ docker network create my-network
+```
+#### 1-2. [Display detailed information on one or more networks](https://docs.docker.com/reference/cli/docker/network/inspect/)
+- 사용법
+```shell
+ docker network inspect [OPTIONS] NETWORK [NETWORK...]
+```
+- 예제
+```shell
+ docker network inspect my-network
+```
+#### 1-3. [List networks](https://docs.docker.com/reference/cli/docker/network/ls/)
+- 사용법
+```shell
+docker network ls [OPTIONS]
+```
+- 예제
+```shell
+ docker network ls
+```
+#### 1-4. [Remove all unused networks](https://docs.docker.com/reference/cli/docker/network/prune/)
+- 사용법
+```shell
+ docker network prune [OPTIONS]
+```
+- 예제
+```shell
+ docker network prune
+```
+
+## Others
+
+### 1. [Log in to a registry](https://docs.docker.com/engine/reference/commandline/login/)
 - 사용법
 ```shell
  docker login [OPTIONS] [SERVER]
@@ -177,7 +230,7 @@ docker push drumgrammer/my-httpd:latest
  docker login
 ```
 
-### 14. [Log out from a registry](https://docs.docker.com/engine/reference/commandline/logout/)
+### 2. [Log out from a registry](https://docs.docker.com/engine/reference/commandline/logout/)
 - 사용법
 ```shell
  docker logout [SERVER]
@@ -187,13 +240,13 @@ docker push drumgrammer/my-httpd:latest
  docker logout
 ```
 
-### 15. [Manage Docker](https://docs.docker.com/engine/reference/commandline/system/)
+### 3. [Manage Docker](https://docs.docker.com/engine/reference/commandline/system/)
 - 사용법
 ```shell
  docker system COMMAND
 ```
 
-#### 15-1. [Remove unused data](https://docs.docker.com/engine/reference/commandline/system_prune/)
+#### 3-1. [Remove unused data](https://docs.docker.com/engine/reference/commandline/system_prune/)
 - 사용법
 ```shell
  docker system prune [OPTIONS]
@@ -203,48 +256,6 @@ docker push drumgrammer/my-httpd:latest
  docker system prune
 ```
 
-### 16. [Manage networks](https://docs.docker.com/reference/cli/docker/network/)
-- 사용법
-```shell
- docker network COMMAND
-```
-
-#### 16-1. [Create a network](https://docs.docker.com/reference/cli/docker/network/create/)
-- 사용법
-```shell
- docker network create [OPTIONS] NETWORK
-```
-- 예제
-```shell
- docker network create my-network
-```
-#### 16-2. [Display detailed information on one or more networks](https://docs.docker.com/reference/cli/docker/network/inspect/)
-- 사용법
-```shell
- docker network inspect [OPTIONS] NETWORK [NETWORK...]
-```
-- 예제
-```shell
- docker network inspect my-network
-```
-#### 16-3. [List networks](https://docs.docker.com/reference/cli/docker/network/ls/)
-- 사용법
-```shell
-docker network ls [OPTIONS]
-```
-- 예제
-```shell
- docker network ls
-```
-#### 16-4. [Remove all unused networks](https://docs.docker.com/reference/cli/docker/network/prune/)
-- 사용법
-```shell
- docker network prune [OPTIONS]
-```
-- 예제
-```shell
- docker network prune
-```
 
 ## Dockerfile 활용
 1. Dockerfile 예제
