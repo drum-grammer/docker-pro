@@ -1,14 +1,29 @@
 version: '3'
+name: docker-ai-chatbot
 services:
-  ollama-container:
+  streamlit:
+    image: python:latest
+    ports:
+      - '8502:8501'
+    networks:
+      - internal-net
+    volumes:
+      - ./chat:/app
+    working_dir: /app
+    command: bash -c "python -m venv venv && . venv/bin/activate && pip install -r requirements.txt && streamlit run chat.py"
+    restart: unless-stopped
+
+  ollama:
     image: ollama/ollama
+    ports:
+      - '11434:11434'
+    networks:
+      - internal-net
     volumes:
       - ./llm:/root/.ollama
-    ports:
-      - 11434:11434
-    # command: ["ollama", "run", "phi"]
+    restart: unless-stopped
 
-  streamlit-app:
-    image: docker-chatbot:0.1
-    ports:
-      - 8501:8501
+networks:
+  internal-net:
+    driver: bridge
+  
