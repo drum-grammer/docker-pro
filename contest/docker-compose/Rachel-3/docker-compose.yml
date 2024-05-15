@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
