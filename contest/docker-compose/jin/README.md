@@ -1,7 +1,9 @@
 ## LLM chatbot
 ### 소개
 chat-gpt와 비슷하게 local LLM(Llama3) 과 대화를 할 수 있는 간단한 웹 애플리케이션입니다. 
-- 구현된 앱에는 Meta의 Llama3-8B 모델을 사용했기 때문에 한국어에 대한 성능은 좋지 않습니다.
+- LLM(Large Language Models)은 대규모 언어 모델이라는 뜻으로, 사용자 질문을 입력하면 질문에 대한 답변을 생성하는 언어 AI 모델입니다.
+  - OpenAI의 chat-gpt, Meta의 Llama, Google의 Gemma 등이 대표적인 예입니다.
+- 구현된 앱에는 비교적 작은 Meta의 Llama3-8B 모델을 사용했기 때문에 한국어에 대한 성능은 좋지 않습니다.
 <img src="./llama3-chatbot.png">
 
 ### 실행 방법
