@@ -10,7 +10,7 @@ services:
     volumes:
       - ./chat:/app
     working_dir: /app
-    command: bash -c "python -m venv venv && . venv/bin/activate && pip install -r requirements.txt && streamlit run chat.py"
+    command: bash -c "pip install -r requirements.txt && streamlit run chat.py"
     restart: unless-stopped
 
   ollama:
